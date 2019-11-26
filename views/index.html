@@ -3,20 +3,53 @@
     <head>
         <title>Burger City</title>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="css\style.css">
     </head>
 
 
     <body>
       <main>
-        <h1>Välkommen till BurgerOnline</h1>
+        <header id="headerid">
 
-        <section>
+            <img id="backgroundpic" src="https://www.freewebheaders.com/wp-content/gallery/food/various-spices-and-herbs-website-header.jpg">
+            <h1 id="headline">Välkommen till BurgerOnline</h1>
+        </header>
+
+      <section id="selection">
           <h2>Select burger</h2>
           <p>This is where you choose your burger</p>
-        </section>
 
 
-        <table>
+        <div class="burgers">
+          <div class="box a">
+            <h2>The Super Burger</h2>
+            <img src="https://cdn.pixabay.com/photo/2017/08/02/22/11/burger-2573682_1280.jpg" alt="Burger" title="The super burger" width="300">
+            <ul>
+              <li>Made with real Organic superfoods</li>
+              <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
+              <li>Made to be eaten</li>
+          </div>
+
+          <div class="box b">
+            <h2>The Veggie Delight</h2>
+            <img src="https://live.staticflickr.com/65535/48436455446_163bfdb6ac_b.jpg" alt="VeggieBurger" title="The Veggie Delight" width="300">
+            <ul>
+              <li>Made with real Organic superfoods</li>
+              <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
+              <li>Made to be eaten</li>
+          </div>
+          <div class="box c">
+            <h1>The NotABigmac</h1>
+              <img id="bigmacpic" src="https://live.staticflickr.com/5218/5386641085_42b19cff0d_b.jpg" alt="BigmacBurger" title="The NotABigmac" width="300" height="200.09">
+              <ul>
+                <li>Mystery meat</li>
+                <li>Max is much better</li>
+                <li>Not made to be eaten</li>
+            </div>
+
+          </div>
+
+      <!--  <table id="burgertable">
           <thead>
             <tr>
               <th>The Super Burger</th>
@@ -26,13 +59,12 @@
           </head>
           <tbody>
             <tr>
-
               <td>
               <img src="https://cdn.pixabay.com/photo/2017/08/02/22/11/burger-2573682_1280.jpg" alt="Burger" title="The super burger" width="300">
 
               <ul>
                 <li>Made with real Organic superfoods</li>
-                <li>Lettuce(contains lactose)</li>
+                <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
                 <li>Made to be eaten</li>
                 </td>
 
@@ -41,12 +73,12 @@
 
                 <ul>
                   <li>No meat in this one</li>
-                  <li>Lettuce(contains lactose)</li>
+                  <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
                   <li>Super good</li>
                   </td>
 
                   <td>
-                  <img src="https://live.staticflickr.com/5218/5386641085_42b19cff0d_b.jpg" alt="BigmacBurger" title="The NotABigmac" width="300" align="right">
+                  <img id="bigmacpic" src="https://live.staticflickr.com/5218/5386641085_42b19cff0d_b.jpg" alt="BigmacBurger" title="The NotABigmac" width="300" align="right">
 
                   <ul>
                     <li>Mystery meat</li>
@@ -58,7 +90,9 @@
             </tbody>
 
 
-          </table>
+          </table> -->
+
+        </section>
 
         <section id="contact">
           <h2>Customer information</h2>
@@ -82,7 +116,7 @@
             </p>
             <p>
               <label for="House">House</label><br>
-              <input type="text" id="House" name="house" required="required" placeholder="House number">
+              <input type="number" id="House" name="house" required="required" placeholder="House number" >
             </p>
             <p>
               <label for="Payment">Payment</label><br>
@@ -102,8 +136,8 @@
             </p>
 
           </form>
-          <button type="submit"><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
         </section>
+        <button type="submit"><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
       </main>
 
       <hr>
