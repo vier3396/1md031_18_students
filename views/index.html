@@ -4,6 +4,10 @@
         <title>Burger City</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="css\style.css">
+        <script type="text/javascript" src="js/menu.js"defer></script>
+        <script src="js/js_script.js"defer></script>
+        <script src="https://vuejs.org/js/vue.js"defer></script>
+        <script src="js/vue_script.js"defer></script>
     </head>
 
 
@@ -20,34 +24,20 @@
           <p>This is where you choose your burger</p>
 
 
-        <div class="burgers">
-          <div class="box a">
-            <h2>The Super Burger</h2>
-            <img src="https://cdn.pixabay.com/photo/2017/08/02/22/11/burger-2573682_1280.jpg" alt="Burger" title="The super burger" width="300">
-            <ul>
-              <li>Made with real Organic superfoods</li>
-              <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
-              <li>Made to be eaten</li>
+
+          <div id='burgerMenu' >
+            <ul v-for='menuItem in menu'>
+              <h1>{{menuItem.name}}</h1>
+              <img v-bind:src="menuItem.img"  width="300" height="200.09">
+              <li>This has {{menuItem.kCal}} kCal</li>
+              <li v-if="menuItem.lactose">Contains lactose</li>
+              <li v-if="menuItem.gluten">Contains gluten</li>
+              <input type="checkbox" v-bind:name="menuItem.name" v-bind:id="menuItem.name" v-bind:value="menuItem.name"> Add to order<br>
+            </ul>
           </div>
 
-          <div class="box b">
-            <h2>The Veggie Delight</h2>
-            <img src="https://live.staticflickr.com/65535/48436455446_163bfdb6ac_b.jpg" alt="VeggieBurger" title="The Veggie Delight" width="300">
-            <ul>
-              <li>Made with real Organic superfoods</li>
-              <li>Lettuce(contains <span class= "lactose">lactose)</span></li>
-              <li>Made to be eaten</li>
-          </div>
-          <div class="box c">
-            <h1>The NotABigmac</h1>
-              <img id="bigmacpic" src="https://live.staticflickr.com/5218/5386641085_42b19cff0d_b.jpg" alt="BigmacBurger" title="The NotABigmac" width="300" height="200.09">
-              <ul>
-                <li>Mystery meat</li>
-                <li>Max is much better</li>
-                <li>Not made to be eaten</li>
-            </div>
 
-          </div>
+
 
       <!--  <table id="burgertable">
           <thead>
@@ -104,23 +94,23 @@
 
             <p>
               <label for="Full name">Full name</label><br>
-              <input type="text" id="Full name" name="fn" required="required" placeholder="First- and Last name">
+              <input type="text" id="fullName" name="fn" required="required" placeholder="First- and Last name">
             </p>
             <p>
               <label for="Email">Email</label><br>
-              <input type="text" id="Email" name="em" required="required" placeholder="E-mail adress">
+              <input type="email" id="email" name="em" required placeholder="E-mail adress">
             </p>
             <p>
               <label for="Street">Street</label><br>
-              <input type="text" id="Street" name="str" required="required" placeholder="Street name">
+              <input type="text" id="street" name="str" required="required" placeholder="Street name">
             </p>
             <p>
               <label for="House">House</label><br>
-              <input type="number" id="House" name="house" required="required" placeholder="House number" >
+              <input type="number" id="house" name="house" required="required" placeholder="House number" >
             </p>
             <p>
               <label for="Payment">Payment</label><br>
-              <select id="Payment" name="pay">
+              <select id="payment" name="pay">
                 <option>Card</option>
                 <option>Monopoly money</option>
                 <option selected="selected">Faktura</option>
@@ -128,16 +118,38 @@
               </select>
             </p>
             <p>
-              <label for="Gender">Gender</label><br>
-              <input type="radio" name="gender" value="male"> Male<br>
-              <input type="radio" name="gender" value="female"> Female<br>
-              <input type="radio" name="gender" value="non-binary"> Non-binary<br>
-              <input type="radio" name="gender" value="Undisclosed"> Undisclosed
+              <label for="gender">Gender</label><br>
+              <input type="radio" name="gender" value="male" id='male'> Male<br>
+              <input type="radio" name="gender" value="female" id='female'> Female<br>
+              <input type="radio" name="gender" value="non-binary" id='non-binary'> Non-binary<br>
+              <input type="radio" name="gender" value="undisclosed" checked id='undisclosed'> Undisclosed<br>
             </p>
 
-          </form>
+
         </section>
-        <button type="submit"><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
+        <div id='orders'>
+          <button v-on:click='markDone' type="submit" id='orderButton'><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
+
+              <div v-show='isHidden'>
+              <h2>Order conformation</h2>
+              <h4> Name: {{contact[0]}}</h2>
+              <h4> Email: {{contact[1]}}</h4>
+              <h4> Street {{contact[2]}}</h4>
+              <h4> House number: {{contact[3]}}</h4>
+              <h4> Payment option: {{contact[4]}}</h4>
+              <h4> Gender: {{contact[5]}}</h4>
+
+              <h3>Your Burgers:</h3>
+              <ul v-for='item in ordToDisp'>
+                <li>{{item}}</li>
+
+              </ul>
+
+
+            </div>
+
+        </div>
+        </form>
       </main>
 
       <hr>
