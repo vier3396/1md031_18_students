@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
     <head>
         <title>Burger City</title>
         <meta charset="utf-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css\style.css">
         <script type="text/javascript" src="js/menu.js"defer></script>
+        <script src="/vue/vue.js" defer></script>
+        <script src="/socket.io/socket.io.js" defer></script>
         <script src="js/js_script.js"defer></script>
         <script src="https://vuejs.org/js/vue.js"defer></script>
         <script src="js/vue_script.js"defer></script>
@@ -30,7 +33,7 @@
               <h1>{{menuItem.name}}</h1>
               <img v-bind:src="menuItem.img"  width="300" height="200.09">
               <li>This has {{menuItem.kCal}} kCal</li>
-              <li v-if="menuItem.lactose">Contains lactose</li>
+              <li v-if="menuItem.lactose">Contains <span class="lactose"> lactose </span></li>
               <li v-if="menuItem.gluten">Contains gluten</li>
               <input type="checkbox" v-bind:name="menuItem.name" v-bind:id="menuItem.name" v-bind:value="menuItem.name"> Add to order<br>
             </ul>
@@ -84,6 +87,7 @@
 
         </section>
 
+        <div id=mapButton>
         <section id="contact">
           <h2>Customer information</h2>
           <p>This is where you provide neccessary information</p>
@@ -96,18 +100,18 @@
               <label for="Full name">Full name</label><br>
               <input type="text" id="fullName" name="fn" required="required" placeholder="First- and Last name">
             </p>
-            <p>
+           <p>
               <label for="Email">Email</label><br>
               <input type="email" id="email" name="em" required placeholder="E-mail adress">
             </p>
-            <p>
+          <!--   <p>
               <label for="Street">Street</label><br>
               <input type="text" id="street" name="str" required="required" placeholder="Street name">
             </p>
             <p>
               <label for="House">House</label><br>
               <input type="number" id="house" name="house" required="required" placeholder="House number" >
-            </p>
+            </p> -->
             <p>
               <label for="Payment">Payment</label><br>
               <select id="payment" name="pay">
@@ -126,18 +130,35 @@
             </p>
 
 
-        </section>
-        <div id='orders'>
-          <button v-on:click='markDone' type="submit" id='orderButton'><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
 
+
+
+            <h1> Click in the map! </h1>
+            <div class="view-box">
+              <div id="dots1" v-on:click="displayOrder">
+                  <div
+                    v-bind:style="{ left: cord.x + 'px', top: cord.y + 'px'}">
+                    T
+                  </div>
+              </div>
+            </div>
+
+            </section>
+
+
+        <div>
+          <button  v-on:click='addOrder' type="submit" id='orderButton'><img src="https://www.maxpixel.net/static/photo/2x/Burger-Grill-Label-Cartoon-Dinner-Icon-American-2916288.jpg" width="30" align="middle"> Send Info</button>
+          </form>
               <div v-show='isHidden'>
               <h2>Order conformation</h2>
               <h4> Name: {{contact[0]}}</h2>
               <h4> Email: {{contact[1]}}</h4>
-              <h4> Street {{contact[2]}}</h4>
-              <h4> House number: {{contact[3]}}</h4>
-              <h4> Payment option: {{contact[4]}}</h4>
-              <h4> Gender: {{contact[5]}}</h4>
+            <!--  <h4> Street {{contact[2]}}</h4>
+              <h4> House number: {{contact[3]}}</h4> -->
+              <h4> Payment option: {{contact[2]}}</h4>
+              <h4> Gender: {{contact[3]}}</h4>
+
+
 
               <h3>Your Burgers:</h3>
               <ul v-for='item in ordToDisp'>
@@ -149,7 +170,8 @@
             </div>
 
         </div>
-        </form>
+      </div>
+
       </main>
 
       <hr>
